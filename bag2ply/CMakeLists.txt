@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.5)
+project(bag2ply)
+
+set(CMAKE_CXX_STANDARD 14)
+set(REALSENSE2_DIR "/usr/include/librealsense2")
+find_package(realsense2 REQUIRED)
+find_package(OpenCV REQUIRED)
+add_executable(bag2ply bag2ply.cpp)
+target_link_libraries(bag2ply ${OpenCV_LIBS})
+if(realsense2_FOUND)
+  include_directories(${realsense_INCLUDE_DIR})
+  target_link_libraries(bag2ply ${realsense2_LIBRARY})
+endif()
